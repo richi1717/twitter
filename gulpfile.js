@@ -24,7 +24,7 @@ var bundler = browserify({
 bundler.transform(hbsfy);
 bundler.on('log', gutil.log); // output build logs to terminal
 
-gulp.task('default', ['watch', 'jshint', 'serve', 'build'])
+gulp.task('default', ['jshint', 'serve', 'build'])
 
 gulp.task('build', ['clean'], function () {
   return bundler.bundle()
@@ -36,11 +36,11 @@ gulp.task('build', ['clean'], function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['./js/*.js', 'index.js'], ['build'])
+  gulp.watch('js/index.js', ['build'])
 })
 
 gulp.task('jshint', function() {
-  return gulp.src('./js/*.js')
+  return gulp.src('./js/index.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });

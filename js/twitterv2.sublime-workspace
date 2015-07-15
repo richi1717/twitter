@@ -1,0 +1,898 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"userPost",
+				"userPostsTmpl"
+			],
+			[
+				"user",
+				"userPosts"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"get",
+				"getUsers"
+			],
+			[
+				"o",
+				"pointer"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"border",
+				"border"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"ba",
+				"background-size"
+			],
+			[
+				"line",
+				"lineString"
+			],
+			[
+				"thread",
+				"threadTmpl"
+			],
+			[
+				"comps",
+				"composeHtml"
+			],
+			[
+				"comp",
+				"composeString"
+			],
+			[
+				"thr",
+				"threadString"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"font-",
+				"font-weight"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"mrg",
+				"margin-left"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"background",
+				"background"
+			],
+			[
+				"borde",
+				"border-bottom"
+			],
+			[
+				"tex",
+				"text-decoration"
+			],
+			[
+				"bor",
+				"border-bottom"
+			],
+			[
+				"bord",
+				"border-left"
+			],
+			[
+				"bottom",
+				"margin-bottom"
+			],
+			[
+				"right",
+				"margin-right"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"first",
+				"firstName"
+			],
+			[
+				"my",
+				"myArray"
+			],
+			[
+				"m",
+				"myArray2"
+			],
+			[
+				"to",
+				"toFixed"
+			],
+			[
+				"string",
+				"string2"
+			],
+			[
+				"time",
+				"timeOfDay"
+			],
+			[
+				"append",
+				"appendTo"
+			],
+			[
+				"n",
+				"nickname"
+			],
+			[
+				"ob",
+				"objLiteral"
+			],
+			[
+				"obj",
+				"objLiteral4"
+			],
+			[
+				"obje",
+				"objLiteral"
+			],
+			[
+				"log",
+				"logThis"
+			],
+			[
+				"fu",
+				"fullName"
+			],
+			[
+				"oj",
+				"objLiteral2"
+			],
+			[
+				"che",
+				"checked"
+			],
+			[
+				"button",
+				"buttonFun"
+			],
+			[
+				"create",
+				"createText"
+			],
+			[
+				"is",
+				"isChecked"
+			],
+			[
+				"checked",
+				"checkedTask"
+			],
+			[
+				"check",
+				"checkedTask"
+			],
+			[
+				"inner",
+				"innerLi"
+			],
+			[
+				"no",
+				"nowrap"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"marg",
+				"margin-left"
+			],
+			[
+				"crea",
+				"createText"
+			],
+			[
+				"border-bottom",
+				"border-bottom-color"
+			],
+			[
+				"bo",
+				"border-right"
+			],
+			[
+				"add",
+				"addClass"
+			],
+			[
+				"the",
+				"thejQueryObject"
+			],
+			[
+				"D",
+				"DOMIsReady"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"b",
+				"b"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"backgou",
+				"background-color"
+			],
+			[
+				"bkg",
+				"background-color"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"color",
+				"color"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"backgr",
+				"background-color"
+			],
+			[
+				"header",
+				"header	Tag"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"ele",
+				"elevatorFloor"
+			],
+			[
+				"pe",
+				"personFloor"
+			],
+			[
+				"me",
+				"message"
+			],
+			[
+				"per",
+				"personDirection"
+			],
+			[
+				"el",
+				"elevatorFloor"
+			],
+			[
+				"e",
+				"elevatorDirection"
+			],
+			[
+				"bk",
+				"background"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/index.html",
+			"settings":
+			{
+				"buffer_size": 461,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.js",
+			"settings":
+			{
+				"buffer_size": 1107,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/gulpfile.js",
+			"settings":
+			{
+				"buffer_size": 1571,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 167.0,
+		"last_filter": "html",
+		"selected_items":
+		[
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"hand",
+				"Set Syntax: Handlebars"
+			],
+			[
+				"next",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"edit",
+				"SnippetMaker: Edit Snippet"
+			],
+			[
+				"scss",
+				"Set Syntax: SCSS"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"sass",
+				"Set Syntax: AppleScript"
+			],
+			[
+				"snip",
+				"SnippetMaker: Make Snippet"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"nex",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"build",
+				"Build: New Build System"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
+			[
+				"htm",
+				"Set Syntax: HTML"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 58.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2",
+		"/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/js"
+	],
+	"file_history":
+	[
+		"/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/js/twitterv2.sublime-project",
+		"/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/js/template.js",
+		"/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/templates/thread.handlebars",
+		"/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/templates/compose.handlebars",
+		"/Users/richi1717/Sites/Lessons/m3/project/twitter/index.html",
+		"/Users/richi1717/Sites/Lessons/m4/AJAX/practice/main.js",
+		"/Users/richi1717/Sites/Lessons/m4/AJAX/practice/index.html",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/commonJS/practice/practice.handlebars",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/gulp/project/main.js",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/gulp/project/styles.css",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/gulp/project/gulpfile.js",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/gulp/project/index.html",
+		"/Users/richi1717/Sites/Lessons/default for lessons/javascript/main.js",
+		"/Users/richi1717/Sites/Lessons/m4/css/Responsive/practice/styles.css",
+		"/Users/richi1717/Sites/Lessons/m4/css/Responsive/practice/index.html",
+		"/Users/richi1717/Sites/Lessons/m4/projects/dashboard/index.html",
+		"/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/js/index.js",
+		"/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/gulpfile.js",
+		"/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/project/twitter/main.js",
+		"/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/package.json",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/ajax/data.json",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/ajax/main.js",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/ajax/index.html",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/scope/index.html",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/scope/main.js",
+		"/Users/richi1717/Sites/build-process/bower.json",
+		"/Users/richi1717/Sites/Lessons/m4/css/component libraries/../index.html",
+		"/Users/richi1717/Library/Application Support/Sublime Text 3/Packages/User/jqcdn.sublime-snippet",
+		"/Users/richi1717/Sites/Lessons/m4/css/component libraries/styles.css",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/gulp/css/main.css",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/gulp/main.scss",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/gulp/index.js",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/gulp/gulpfile.js",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/npm-lessons/math/multiply.js",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/npm-lessons/math/index.js",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/npm-lessons/index.js",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/sub.js",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/npm-lessons/add.js",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/npm-lessons/index.html",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/npm-lessons/addjs/add.js",
+		"/Users/richi1717/Sites/Lessons/m4/javascript/npm-lessons/node_modules/add.js",
+		"/Users/richi1717/Sites/Lessons/m4/css/Responsive/index.html",
+		"/Users/richi1717/Sites/Lessons/m4/css/Responsive/styles.css",
+		"/Users/richi1717/Sites/Lessons/m4/css/grid system/index.html",
+		"/Users/richi1717/Sites/Lessons/m4/css/grid system/styles.css",
+		"/Users/richi1717/Sites/Lessons/m4/AJAX/index.html",
+		"/Users/richi1717/Sites/Lessons/m4/AJAX/main.js",
+		"/Users/richi1717/Sites/Lessons/m3/project/puppy love/styles.css",
+		"/Users/richi1717/Sites/Lessons/m3/project/puppy love/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/notes/july6/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/notes/july6/main.js",
+		"/Users/richi1717/Sites/Lessons/m3/project/twitter/styles.css",
+		"/Users/richi1717/Sites/Lessons/m2/ProjectToDoList/jQuery ToDo/js/main.js",
+		"/Users/richi1717/Sites/Lessons/m3/javascript/handlebars/bradsway/main.js",
+		"/Users/richi1717/Library/Application Support/Sublime Text 3/Packages/User/multipleLineComment.sublime-snippet",
+		"/Users/richi1717/Sites/Lessons/m3/javascript/handlebars/bradsway/index.html",
+		"/Users/richi1717/Library/Application Support/Sublime Text 3/Packages/User/commentBox.sublime-snippet",
+		"/Users/richi1717/Sites/Lessons/default for lessons/html/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/javascript/handlebars/main.js",
+		"/Users/richi1717/Sites/Lessons/m3/javascript/handlebars/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/project/twitter/tweetCompose.png",
+		"/Users/richi1717/Sites/Lessons/m3/project/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/project/puppy love/jamaican.css",
+		"/Users/richi1717/Sites/Phoenix/Lesson Notes/15.3/JavaScript/Handlebars/index.html",
+		"/Users/richi1717/Sites/Phoenix/Lesson Notes/15.3/JavaScript/Handlebars/index.js",
+		"/Users/richi1717/Sites/Lessons/m3/javascript/handlebars/practice/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/javascript/handlebars/practice/main.js",
+		"/Users/richi1717/Sites/Lessons/m3/css/object oriented css/practice/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/css/object oriented css/practice/styles.css",
+		"/Users/richi1717/Sites/Lessons/m3/css/lightbox/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/css/lightbox/styles.css",
+		"/Users/richi1717/Sites/Lessons/m3/css/patterns/patterns2/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/css/patterns/patterns2/styles.css",
+		"/Users/richi1717/Sites/Lessons/default for lessons/css/styles.css",
+		"/Users/richi1717/Sites/Lessons/m3/javascript/built in methods/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/javascript/built in methods/main.js",
+		"/Users/richi1717/Sites/Lessons/m3/javascript/basiclogic/index.js",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/interview/styles.css",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/june22/index.html",
+		"/Users/richi1717/Sites/Lessons/default for lessons/jquery/main.js",
+		"/Users/richi1717/Sites/Lessons/default for lessons/main.js",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/june19/index.html",
+		"/Users/richi1717/Sites/Lessons/default for lessons/index.html",
+		"/Users/richi1717/Sites/Lessons/m2/css project/styles.css",
+		"/Users/richi1717/Sites/Lessons/m2/css project/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/javascript/basiclogic/main.js",
+		"/Users/richi1717/Sites/Lessons/m3/css/patterns/patterns1/styles.css",
+		"/Users/richi1717/Sites/Lessons/m3/css/patterns/patterns1/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/css/pattern/styles.css",
+		"/Users/richi1717/Sites/Lessons/m3/css/pattern/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/jquery/jqueryReview/styles.css",
+		"/Users/richi1717/Sites/Lessons/m3/jquery/jqueryReview/main.js",
+		"/Users/richi1717/Sites/Lessons/m3/jquery/jqueryReview/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/javascript/index.js",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/june19/htmlnotes/index.html",
+		"/Users/richi1717/Sites/Lessons/m3/javascript/index.html",
+		"/Users/richi1717/Sites/Lessons/m2/ProjectToDoList/jQuery ToDo/index.html",
+		"/Users/richi1717/Sites/Lessons/m2/ProjectToDoList/jQuery ToDo/css/styles.css",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/june19/index.js",
+		"/Users/richi1717/Sites/Lessons/jQuery/notes/june22.js",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/june19/htmlnotes/index.css",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/notesForM2june19/htmlnotes/index.html",
+		"/Users/richi1717/Sites/Lessons/jQuery/notes/index.html",
+		"/Users/richi1717/Sites/Lessons/m2/index.css",
+		"/Users/richi1717/Sites/Lessons/m2/index.html",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/notesForM2june19/index.js",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/index.html",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/notesForM2june19/index.html",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/notesForM2june19/htmlnotes/index.css",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/notesForM2june19/indexbrad.css",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/notesForM2june19/index2.css",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/notesForM2june19/index2.html",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/notesForM2june19/index1.css",
+		"/Users/richi1717/Sites/Lessons/m2/index.js",
+		"/Users/richi1717/Sites/Lessons/m2/ProjectToDoList/jQuery ToDo/README.md",
+		"/Users/richi1717/Sites/Lessons/m2/main.js",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/index.css",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/june152.js",
+		"/Users/richi1717/Sites/Lessons/Pseudo Classes and Elements/styles.css",
+		"/Users/richi1717/Sites/Lessons/Pseudo Classes and Elements/index.html",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/june181.html",
+		"/Users/richi1717/Sites/Lessons/m2/notesForM2/june182.js",
+		"/Users/richi1717/Sites/Lessons/m2/ProjectToDoList/index.php",
+		"/Users/richi1717/Sites/Lessons/jQuery/notes/index.js",
+		"/Users/richi1717/Sites/Lessons/m2/project2/index.html",
+		"/Users/richi1717/Sites/Lessons/m2/project2/main.js",
+		"/Users/richi1717/Sites/Lessons/m2/project2/styles.css"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"hbsfy",
+			"\\",
+			"'",
+			"puppy",
+			"gallery ",
+			".compose",
+			"   **/",
+			"/**   ",
+			"/** ",
+			"/**",
+			"PRIMARY-INFO",
+			"primary-info",
+			"info",
+			"services",
+			"primary-info",
+			"brad",
+			"height",
+			"* +",
+			"h3",
+			"</strong>",
+			"<strong>",
+			">\n",
+			"<strong>",
+			">\n",
+			"<strong>",
+			"h3",
+			"text-deco",
+			"media-on",
+			"media-one",
+			"primary-info",
+			"secondary-header",
+			"p",
+			"p ",
+			"primary-med",
+			"a",
+			" class=\"primary-h3\"",
+			"tiles",
+			"secondary-header",
+			"border-box",
+			"box-shad",
+			"media",
+			";\n",
+			"secondary-footer",
+			"media-two",
+			"secondary-h3",
+			"h3",
+			"secondary-h3",
+			"graphic-primary",
+			"primary-g",
+			"primary-group",
+			"group",
+			"h3",
+			"span",
+			"h3",
+			"graphic-secondary",
+			"p",
+			"one",
+			"footer",
+			"strong",
+			"key",
+			"hero",
+			"button",
+			"callback",
+			"$checked",
+			"firstName",
+			"first-name",
+			"required",
+			">\n",
+			"label class=\"text\"",
+			"label",
+			"id=\"triangle3\"",
+			"#heart",
+			"class=\"triangle\" ",
+			"$circle",
+			"Tank",
+			"tank",
+			"Tank",
+			"$tank",
+			"$('.message')",
+			"$('.tank')",
+			"$divtank",
+			"$('div.tank')",
+			"'div.tank'",
+			";",
+			"alert",
+			"();\n",
+			"pay",
+			"pay1",
+			">\n",
+			"()",
+			"++)\n",
+			"3",
+			"1",
+			")\n",
+			"console",
+			"doit",
+			"mySaying",
+			")",
+			"mySaying",
+			")",
+			"'",
+			"include",
+			"xyz",
+			"nav",
+			"'",
+			"	\n",
+			"\"",
+			"$",
+			"xyz",
+			"$xyz"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 461,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1107,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/gulpfile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1571,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 138.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/Node.sublime-build",
+	"project": "twitterv2.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Sites/Lessons/m4/projects/jQuery Twitter v2/js/twitterv2.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 233.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
