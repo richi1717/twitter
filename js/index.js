@@ -24,16 +24,38 @@ $(function () {
   getUsers()
   	.done(function (users) {
   		users.forEach(function (user) {
+  			console.log(tmpl.tweet({
+  				handle: user.handle, 
+  				img: user.img,
+  				message: user.realName
+  			}))
   			getTweets(user.id)
   				.done(function (tweets) {
   					tweets.forEach(function (tweet) {
-  						console.log(tmpl.tweet({tweetid: tweet.id}))
-  						
+  						console.log(tmpl.tweet({
+  							id: tweet.id,
+  							userId: tweet.userId,
+  							message: tweet.message
+  						}))
   					})
+  					
   					console.log('tweets per user', tweets)
+  				getReplies()
+
   				})
-  		})
+
+
+
+  			})
   	})
+
+  function getReplies(id) {
+  	return $.get(tweetsUrl + id + '/replies')
+  		// .done(function (getRepliesFromTweetsUrl) {
+  		// console.log('chris p', tweetsUrl + id + '/replies')
+  			
+  		// })
+  }
 
   function getTweets(id) {
   	return $.get(usersUrl + id + '/tweets')	
@@ -41,6 +63,10 @@ $(function () {
   		// 	console.log(getTweetsFromTweetsUrl)
   		// })
   }
+
+ getReplies(2)
+
+
 
   
 });
