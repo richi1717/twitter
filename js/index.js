@@ -5,7 +5,7 @@ var tmpl = require('./template.js')
 
 var currentUser = {
   handle: '@darthkitty',
-  img: 'darthkitty.jpg',
+  img: '/images/darthkitty.jpg',
   id: 4
 };
 
@@ -18,18 +18,34 @@ $(function () {
     return $.get(usersUrl)
   }
 
-  getUsers()
-    .done(function (users) {
-      users.forEach(function (user) {
-        // console.log(tmpl.tweet({
-        //   handle: user.handle, 
-        //   img: user.img,
-        //   message: user.realName
-        // }))
+  var getUsers = getUsers()
 
+  function getReplies(id) {
+    return $.get(tweetsUrl + id + '/replies')
+  }
+
+  function getTweets(id) {
+    return $.get(usersUrl + id + '/tweets') 
+  }
+
+  function renderCompose() {
+    return tmpl.compose() 
+  }
+
+
+
+
+  getUsers.done(function (users) {
+      users.forEach(function (user) {
         getTweets(user.id)
           .done(function (tweets) {
             tweets.forEach(function (tweet) {
+              $('#tweets').append(renderThread({
+                handle: user.handle, 
+                img: '../images/' + user.img,
+                message: tweet.message
+              }))
+              
               // console.log(tmpl.tweet({
               //   id: tweet.id,
               //   userId: tweet.userId,
@@ -42,6 +58,9 @@ $(function () {
               console.log('hi', tmpl.tweet({
                 repliesId: reply.id
               }))
+              // $('#tweets').append(renderThread({
+              //   repliesId: reply.id
+              // }))
             })
           })
         })
@@ -55,50 +74,54 @@ $(function () {
 
   $('#main').on('submit', '.compose', function (event) {
     event.preventDefault()
-    console.log($('textarea').val())
+    var message = $(this).find('textarea').val()
+    var replyTweet = $(this).closest('.replies')
+
+    if(!!replyTweet.length) {
+     replyTweet.append(renderTweet(currentUser, message)) 
+
+    } else {
+      $('#tweets').append(renderThread(currentUser, message))
+
+    }
+
+
+
     
     $(this).removeClass('expand')
-
-    var message = $(this).find('textarea').val()
-    $('#tweets').append(message)
 
     $(this).find('textarea').val('')
     $(this).find('count').text(140)
 
+
+
+
   })
 
-  function getReplies(id) {
-    return $.get(tweetsUrl + id + '/replies')
-      // .done(function (getRepliesFromTweetsUrl) {
-      // console.log('chris p', tweetsUrl + id + '/replies')
-        
-      // })
-  }
+  $('#tweets').on('click', '.tweet', function () {
+    $(this).closest('.thread').toggleClass('expand')
+  })
 
-  function getTweets(id) {
-    return $.get(usersUrl + id + '/tweets') 
-      // .done(function (getTweetsFromTweetsUrl) {
-      //  console.log(getTweetsFromTweetsUrl)
-      // })
-  }
 
-  function renderCompose() {
-    return tmpl.compose() 
-  }
 
-  function renderThread(handle, message, img) {
-    var thread = tmpl.thread({
-        tweet: renderTweet(handle, message, img),
+  function renderThread(user, message, id) {
+    var html = tmpl.thread({
+        tweet: renderTweet(user, message, id),
         compose: renderCompose()
     })
-
-
+    return html
   }
 
-  function renderTweet() {
-    var tweet = tmpl.tweet
-
+  function renderTweet(user, message, id) {
+    var html = tmpl.tweet({
+          img: user.img,
+          handle: user.handle,
+          message: user.message,
+          id: id
+        })
+    return html
   }
+
 
 
 
