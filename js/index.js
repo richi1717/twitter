@@ -40,11 +40,7 @@ $(function () {
         getTweets(user.id)
           .done(function (tweets) {
             tweets.forEach(function (tweet) {
-              $('#tweets').append(renderThread({
-                handle: user.handle, 
-                img: '../images/' + user.img,
-                message: tweet.message
-              }))
+              $('#tweets').append(renderThread(user, tweet.message))
               
               // console.log(tmpl.tweet({
               //   id: tweet.id,
@@ -55,9 +51,9 @@ $(function () {
         getReplies(tweet.id) 
           .done(function (replies) {
             replies.forEach(function (reply) {
-              console.log('hi', tmpl.tweet({
-                repliesId: reply.id
-              }))
+              // console.log('hi', tmpl.tweet({
+              //   repliesId: reply.id
+              // }))
               // $('#tweets').append(renderThread({
               //   repliesId: reply.id
               // }))
@@ -79,9 +75,11 @@ $(function () {
 
     if(!!replyTweet.length) {
      replyTweet.append(renderTweet(currentUser, message)) 
+     console.log(message)
 
     } else {
       $('#tweets').append(renderThread(currentUser, message))
+      console.log(message)
 
     }
 
@@ -116,13 +114,13 @@ $(function () {
     var html = tmpl.tweet({
           img: user.img,
           handle: user.handle,
-          message: user.message,
+          message: message,
           id: id
         })
     return html
   }
 
-
+ 
 
 
   
