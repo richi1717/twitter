@@ -16,38 +16,56 @@ $(function () {
 
   function getUsers() {
     return $.get(usersUrl)
-      // .done(function (getUsersFromUserUrl) {
-      //  console.log(getUsersFromUserUrl)
-      // })
   }
 
   getUsers()
     .done(function (users) {
       users.forEach(function (user) {
-        console.log(tmpl.tweet({
-          handle: user.handle, 
-          img: user.img,
-          message: user.realName
-        }))
+        // console.log(tmpl.tweet({
+        //   handle: user.handle, 
+        //   img: user.img,
+        //   message: user.realName
+        // }))
+
         getTweets(user.id)
           .done(function (tweets) {
             tweets.forEach(function (tweet) {
-              console.log(tmpl.tweet({
-                id: tweet.id,
-                userId: tweet.userId,
-                message: tweet.message
+              // console.log(tmpl.tweet({
+              //   id: tweet.id,
+              //   userId: tweet.userId,
+              //   message: tweet.message
+              // }))
+
+        getReplies(tweet.id) 
+          .done(function (replies) {
+            replies.forEach(function (reply) {
+              console.log('hi', tmpl.tweet({
+                repliesId: reply.id
               }))
             })
-            
-            console.log('tweets per user', tweets)
-          getReplies()
-
           })
-
-
-
         })
+      })
     })
+  })
+
+  $('#main').on('click', 'textarea', function () {
+    $(this).parent().addClass('expand')
+  })
+
+  $('#main').on('submit', '.compose', function (event) {
+    event.preventDefault()
+    console.log($('textarea').val())
+    
+    $(this).removeClass('expand')
+
+    var message = $(this).find('textarea').val()
+    $('#tweets').append(message)
+
+    $(this).find('textarea').val('')
+    $(this).find('count').text(140)
+
+  })
 
   function getReplies(id) {
     return $.get(tweetsUrl + id + '/replies')
@@ -64,7 +82,23 @@ $(function () {
       // })
   }
 
- getReplies(2)
+  function renderCompose() {
+    return tmpl.compose() 
+  }
+
+  function renderThread(handle, message, img) {
+    var thread = tmpl.thread({
+        tweet: renderTweet(handle, message, img),
+        compose: renderCompose()
+    })
+
+
+  }
+
+  function renderTweet() {
+    var tweet = tmpl.tweet
+
+  }
 
 
 
