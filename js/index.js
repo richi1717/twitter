@@ -18,9 +18,6 @@ $(function () {
     return $.get(usersUrl)
   }
 
- 
-
-
   function getReplies(id) {
     return $.get(tweetsUrl + id + '/replies')
   }
@@ -41,34 +38,9 @@ $(function () {
     return tmpl.compose() 
   }
 
-
   var replies = getAllReplies()
   var robots = getUsers()
   var tweeting = getTweets()
-
-
-
-
-
-
-
-
-//   replies.done(function (replies) {
-//     replies.forEach(function (reply) {
-//       tweeting.done(function (tweeting) {
-//         tweeting.forEach(function (tweet) {
-//           if (reply.tweetId === tweet.id) {
-            
-//           } 
-//       })
-//     })
-//   })
-// })      
-   
-// getAllReplies()
-//   .done(function (replies) {
-//     reply(replies)
-//   })
 
   robots.done(function (robots) {
     robots.forEach(function (robot) {
@@ -96,44 +68,33 @@ $(function () {
 
     if(!!replyTweet.length) {
      postReply(currentUser, tweetId, message)
-      
-
-     // console.log(message)
-
     } else {
-      
       postTweet(currentUser, message)
-      // console.log(message)
-
     }
-
     $(this).removeClass('expand')
-
     $(this).find('textarea').val('')
     $(this).find('count').text(140)
-
   })
 
   $('#tweets').on('click', '.tweet', function () {
     $(this).closest('.thread').toggleClass('expand')
     var appendReplies = $(this).parents('#tweets').find('.replies > .tweet')
-      if (!!appendReplies.length) {
+    if (!!appendReplies.length) {
       } else {
-          getAllReplies()
-            .done(function (replies) {
-              replies.forEach(function (reply) {
-                robots.done(function (robots) {
-                  robots.forEach(function (robot) {
-                  if (reply.userId === robot.id) {
-                    var html = renderTweet(robot, reply.message, reply.tweetId)
-                    var search = $('#tweet-' + reply.tweetId)
-                    search.siblings('.replies').append(html)
-                  }
-                })
+        getAllReplies()
+          .done(function (replies) {
+            replies.forEach(function (reply) {
+              robots.done(function (robots) {
+                robots.forEach(function (robot) {
+                if (reply.userId === robot.id) {
+                  var html = renderTweet(robot, reply.message, reply.tweetId)
+                  var search = $('#tweet-' + reply.tweetId)
+                  search.siblings('.replies').append(html)
+                }
               })
             })
           })
-
+        })
       }
   })
 
@@ -166,15 +127,10 @@ $(function () {
       })
       var search = $('#tweet-' + tweetId)
       search.siblings('.replies').append(html)
-
-
     }).fail(function () {
       console.log('if you\'re seeing this, I have probably jumped off of a building')
     })
-
   }
-
-
 
   function renderThread(user, message, id) {
     var html = tmpl.thread({
@@ -192,12 +148,6 @@ $(function () {
           message: message,
           id: tweetId
         })
-    // console.log('heyheyejeheyeye',user)
     return html
   }
-
- 
-
-
-  
 });
