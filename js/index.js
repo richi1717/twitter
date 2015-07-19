@@ -63,18 +63,20 @@ $(function () {
 
     var message = $(this).find('textarea').val()
     var replyTweet = $(this).closest('.replies')
-    var getTweetId = replyTweet.siblings('.tweet').attr('id')
-    var tweetId = getTweetId.slice(6, 7)
+
 
     if(!!replyTweet.length) {
-     postReply(currentUser, tweetId, message)
+      var getTweetId = replyTweet.siblings('.tweet').attr('id')
+      var tweetId = getTweetId.slice(6)
+      postReply(currentUser, tweetId, message)
     } else {
       postTweet(currentUser, message)
     }
+
     $(this).removeClass('expand')
     $(this).find('textarea').val('')
     $(this).find('count').text(140)
-  })
+  }) 
 
   $('#tweets').on('click', '.tweet', function () {
     $(this).closest('.thread').toggleClass('expand')
@@ -140,13 +142,13 @@ $(function () {
     return html
   }
 
-  function renderTweet(user, message, tweetId) {
+  function renderTweet(user, message, idTweet) {
     var html = tmpl.tweet({
           img: user.img,
           userId: user.id,
           handle: user.handle,
           message: message,
-          id: tweetId
+          id: idTweet
         })
     return html
   }

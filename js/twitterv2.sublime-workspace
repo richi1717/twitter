@@ -4,8 +4,36 @@
 		"selected_items":
 		[
 			[
+				"getTwe",
+				"getTweetId"
+			],
+			[
+				"post",
+				"postReply"
+			],
+			[
+				"repli",
+				"repliesUrl"
+			],
+			[
+				"render",
+				"renderCompose"
+			],
+			[
+				"tw",
+				"tweetsByUser"
+			],
+			[
+				"twe",
+				"tweetsUrl"
+			],
+			[
+				"userId",
+				"userIdFromReply"
+			],
+			[
 				"user",
-				"userId"
+				"userIdFromReply"
 			],
 			[
 				"get",
@@ -28,24 +56,12 @@
 				"replies"
 			],
 			[
-				"repli",
-				"replies"
-			],
-			[
-				"render",
-				"renderThread"
-			],
-			[
 				"reply",
 				"replyTweet"
 			],
 			[
 				"renderT",
 				"renderTweet"
-			],
-			[
-				"twe",
-				"tweet"
 			],
 			[
 				"ren",
@@ -399,7 +415,23 @@
 			"file": "index.js",
 			"settings":
 			{
-				"buffer_size": 3358,
+				"buffer_size": 3926,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bundle.js",
+			"settings":
+			{
+				"buffer_size": 758992,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/db.json",
+			"settings":
+			{
+				"buffer_size": 1458,
 				"line_ending": "Unix"
 			}
 		},
@@ -412,34 +444,21 @@
 			}
 		},
 		{
-			"file": "/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/templates/threadTemplate.handlebars",
-			"settings":
-			{
-				"buffer_size": 88,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "'use strict'\n\n\nvar template = require('./template.js');\nvar $ = require('jquery');\n\n$(function () {\n\n    var currentUser = {};\n\n    var repliesUrl = \"http://localhost:3000/replies/\";\n    var tweetsUrl = \"http://localhost:3000/tweets/\";\n    var usersUrl = \"http://localhost:3000/users/\";\n\n    // Load existing database content on page\n    loadTweets();\n    loadUsers();\n\n    // Select user and load them into currentUser\n    $('#user-select').change(function() {\n        var userSelected = $('#user-select').val();\n        $.get(usersUrl + userSelected)\n            .done(function(data) {\n                currentUser = data;\n            });\n     });\n\n    // Expand textareas for composing\n    $('#main').on('click', 'form', function() {\n        $(this).addClass('expand');\n        if ($.isEmptyObject(currentUser)) {\n            $(this).find('button').attr('disabled', true).css({\"background-color\": \"rgba(46,154,194,0.4)\"});\n        } else {\n            $(this).find('button').attr('disabled', false).css({\"background-color\": \"#2E9AC2\"});\n        }\n    });\n\n    // Expand original tweets\n    $('#tweets').on('click', '.thread > .tweet', function() {\n        $(this).parent('.thread').toggleClass('expand');\n    });  \n\n    // Compose Function when user creates a tweet\n    $('#main').on('click', '.compose button', function() {\n        var $message = $(this).parents('.compose').find('textarea').val();\n        var $parent = $(this).parent();\n    \n        if($(this).parents('header').length) {\n            postTweet(currentUser, $message, tweetsUrl);\n        } else {\n            var tweetId = $(this).parents('.thread').find('.tweet').attr('id');\n            var replyHandle = '';\n            replyHandle = $(this).parents('.thread').find('.tweet:first-child .title').text();\n            console.log(replyHandle);\n            postReply(currentUser, $message, repliesUrl, tweetId, replyHandle);\n        }\n\n        $message = $parent.siblings('textarea').val('');   // resets textarea entry\n        $(this).parents('.compose').removeClass('expand'); // remove class 'expand' to close compose div\n        $(this).prev('.count').text(140);                  // resets message character count to 140\n\n        return false;\n    });\n\n    // Character count decrementer and stylings\n    $('#main').on('keyup', 'textarea', function() {\n        var $msgCount = $(this).val().length;\n        var $limitCount = $('textarea').siblings('div').children('.count');\n\n        $limitCount.text(140 - ($msgCount));\n        \n        if ($msgCount > 140) {\n            $limitCount.css({\"color\": \"red\", \"background-color\": \"pink\"});\n            $(this).css({\"color\": \"red\"});\n            $(this).siblings('div').children('button').attr('disabled', true).css({\"background-color\": \"rgba(46,154,194,0.4)\"});\n\n        } else {\n            $limitCount.css({\"color\": \"#777\", \"background-color\": \"transparent\"});\n            $(this).css({\"color\": \"#777\"});\n            $(this).siblings('div').children('button').attr('disabled', false).css({\"background-color\": \"#2E9AC2\"});\n        }\n        \n    });\n\n    // render out tweet body\n\n    // post original tweet and render out new thread\n    function postTweet(user, message, url) {\n        $.post(tweetsUrl, {\n            userId: user.id,\n            message: message\n        }).done(function(data) {\n            var html = renderThread(user, data.message, data.id);\n            $('#tweets').append(html);\n        });\n    }\n\n    // post reply and render out reply tweet\n    function postReply(user, message, url, tweetId, replyHandle) {\n        $.post(repliesUrl, {\n            userId: user.id,\n            tweetId: tweetId.slice(6),\n            message: replyHandle + ' ' + message\n        }).done(function(data) {\n            var html = renderTweet(user, data.message, data.id);\n            $('#' + tweetId).siblings('.replies').append(html);\n        });\n    }\n\n    // load tweets and replies already stored in db.json\n    function loadTweets() {\n         $.getJSON(tweetsUrl)\n            .done(function(tweets) {\n                tweets.forEach(function(tweet) {\n                    $.getJSON(usersUrl + tweet.userId, function(tweetUser) {\n                            $('#tweets').append(renderThread(tweetUser, tweet.message, tweet.id));                            \n                        });\n               });\n            });\n\n        $.getJSON(usersUrl)\n            .done(function(users) {\n                users.forEach(function(user) {\n                    $.getJSON(usersUrl  +  user.id + '/replies')\n                        .done(function(replies) {\n                            replies.forEach(function(reply) {\n                                var search = '#tweets #tweet-' + reply.tweetId;\n                                $(search).siblings('.replies')\n                                    .append(renderTweet(user, reply.message, reply.id));\n                            });\n                        });\n                });\n            });\n    };\n\n    // load all users into a select/option input and assign their corresponding ids as values\n    function loadUsers() {\n        \n        $.getJSON(usersUrl) \n            .done(function(users) {\n                users.forEach(function(user) {\n                    $('#user-select').append('<option value =\"' + user.id + '\">' + user.handle + '</option>')\n                    return user;\n                });\n            });\n    }\n\n    // Create new user in the database\n    function createUser(img, handle, realName) {\n        $.post(usersUrl, {\n            img: img,\n            handle: handle,\n            realName: realName\n        }).fail(function(err){\n            alert(err);\n            console.log('There was a problem creating a new user');\n        });\n    }\n\n    // manually update tweet\n    function updateTweet(id, userId, message) {\n        $.ajax({\n            url: tweetsUrl + id,\n            type: 'PUT',\n            data: {\n                id: id,\n                userId: userId,\n                message: message\n            }\n        });\n    }\n\n    // manually update reply\n    function updateReply(id, userId, tweetId, message) {\n        $.ajax({\n            url: repliesUrl + id,\n            type: 'PUT',\n            data: {\n                id: id,\n                userId: userId,\n                tweetId: tweetId,\n                message: message\n            }\n        });\n    }\n\n});\nStatus API Training Shop Blog About Help\n'use strict'\n\nvar template = require('./template.js');\nvar $ = require('jquery');\nvar apiUrl = 'http://localhost:3000/';\n\n$(function () {\n\n  // User is set to empty by default\n  var currentUser = {};\n\n  // Load existing database content on page\n  loadTweets();\n  loadUsers();\n\n  // Select user and load them into currentUser\n  $('#user-select').change(function() {\n    var userSelected = $('#user-select').val();\n    $.get(apiUrl + 'users/' + userSelected)\n      .done(function(data) {\n        currentUser = data;\n      });\n  });\n\n  // Expand textareas for composing\n  $('#main').on('click', '.compose', function() {\n    var composeBtn = $(this).find('button');\n\n    $(this).addClass('expand');\n    if ($.isEmptyObject(currentUser)) {\n      disabledBtn(composeBtn);\n    } else {\n      enabledBtn(composeBtn);\n    }\n  });\n\n  // Expand original tweets\n  $('#tweets').on('click', '.thread > .tweet', function() {\n    $(this).parent('.thread').toggleClass('expand');\n  });  \n\n  // Compose Function when user creates a tweet\n  $('#main').on('click', '.compose button', function() {\n    var $message = $(this).parents('.compose').find('textarea').val();\n    var $parent = $(this).parent();\n  \n    if($(this).parents('header').length) {\n      postTweet(currentUser, $message);\n    } else {\n      var tweetId = $(this).parents('.thread').find('.tweet').attr('id');\n      var replyHandle = '';\n      replyHandle = $(this).parents('.thread').find('.tweet:first-child .title').text();\n      postReply(currentUser, $message, tweetId, replyHandle);\n    }\n\n    $message = $parent.siblings('textarea').val('');   // resets textarea entry\n    $(this).parents('.compose').removeClass('expand'); // remove class 'expand' to close compose div\n    $(this).prev('.count').text(140);                  // resets message character count to 140\n\n    return false;\n  });\n\n  // Character count decrementer and stylings while checking if there is an active user\n  $('#main').on('keyup', 'textarea', function() {\n    var $msgCount = $(this).val().length;\n    var $limitCount = $('textarea').siblings('div').find('.count');\n    var $composeBtn = $(this).siblings('div').find('button');\n\n    $limitCount.text(140 - ($msgCount));\n    \n    if ($.isEmptyObject(currentUser)) {\n      disabledBtn($composeBtn);\n      if ($msgCount > 140) {\n        $limitCount.css({\"color\": \"red\", \"background-color\": \"pink\"});\n        $(this).css({\"color\": \"red\"});\n      } else {\n        $limitCount.css({\"color\": \"#777\", \"background-color\": \"transparent\"});\n        $(this).css({\"color\": \"#777\"});\n      }\n    } else {\n      if ($msgCount > 140) {\n        $limitCount.css({\"color\": \"red\", \"background-color\": \"pink\"});\n        $(this).css({\"color\": \"red\"});\n        disabledBtn(composeBtn);\n      } else {\n        $limitCount.css({\"color\": \"#777\", \"background-color\": \"transparent\"});\n        $(this).css({\"color\": \"#777\"});\n        enabledBtn($composeBtn);\n      }\n    }    \n  });\n\n  // Disable functionality of button\n  function disabledBtn(btn) {\n    return btn.attr('disabled', true).css({\"background-color\": \"rgba(46,154,194,0.4)\"});\n  };\n\n  // Enable functionality of button\n  function enabledBtn(btn) {\n    return btn.attr('disabled', false).css({\"background-color\": \"#2E9AC2\"});\n  };\n\n  // Render out tweet body\n  function renderTweet(user, tweet) {\n    var html = template.tweetTmpl({\n      id: tweet.id,\n      img: user.img,\n      handle: user.handle,\n      message: tweet.message\n    });\n\n    return html;\n  };\n\n  // Render out compose body\n  function renderCompose() {\n    var html = template.composeTmpl();\n\n    return html;\n  };\n\n  // Render out thread comprised of tweet and compose\n  function renderThread(user, tweet) {\n    var html = template.threadTmpl({\n      tweet: renderTweet(user, tweet),\n      compose: renderCompose()                    \n    });\n\n    return html;\n  };\n\n  // Post original tweet and render out new thread\n  function postTweet(user, message) {\n    $.post(apiUrl + 'tweets', {\n      userId: user.id,\n      message: message\n    }).done(function(data) {\n      var html = renderThread(user, data);\n      $('#tweets').append(html);\n    });\n  };\n\n  // Post reply and render out reply tweet\n  function postReply(user, message, tweetId, replyHandle) {\n    $.post(apiUrl + 'replies', {\n      userId: user.id,\n      tweetId: tweetId.slice(6),\n      message: replyHandle + ' ' + message\n    }).done(function(data) {\n      var html = renderTweet(user, data);\n      $('#' + tweetId).siblings('.replies').append(html);\n    });\n  };\n\n  function loadTweets(){\n    getUsers()\n      .done(getUserTweets)\n      .done(getUserReplies)\n      .fail(function(err) {\n        console.log('There was an error loading the tweets');\n      })\n  };\n\n  // Return http://localhost:3000/users\n  function getUsers() {\n    return $.get(apiUrl + 'users');\n  };\n\n  // Return http://localhost:3000/tweets\n  function getTweets() {\n    return $.get(apiUrl + 'tweets');\n  };\n\n  // Return http://localhost:3000/replies\n  function getReplies() {\n    return $.get(apiUrl + 'replies');\n  };\n\n  // Sort tweets and append the original tweets in a thread format\n  function appendTweets(tweets) {\n    tweets\n      .sort(function(tweets1, tweets2) {\n        return tweets1.id - tweets2.id;\n      })\n      .forEach(function(tweet){\n          $('#tweets').append(renderThread(tweet, tweet));      \n      });\n  };\n\n  // Look for original tweet ids and append corresponding replies\n  function appendReplies(replies, user) {\n    replies.forEach(function(reply) {\n      var search = '#tweets #tweet-' + reply.tweetId;\n      $(search).siblings('.replies')\n        .append(renderTweet(user, reply))\n    });\n  };\n\n  // Grab original tweets then filter through and assign properties to tweets to be appended\n  function getUserTweets(users) { \n    getTweets()\n      .done(function(tweets) {\n          for (var i = 0; i < users.length; i++) {\n            for (var j = 0; j < tweets.length; j++) {\n              if (users[i].id === tweets[j].userId){\n                tweets[j].handle  = users[i].handle;\n                tweets[j].img     = users[i].img;\n                tweets[j].tweetId = tweets[j].id;\n              }\n            }\n          }\n          appendTweets(tweets);\n      });\n  };\n\n  // Grab replies by user and append\n  function getUserReplies(users) {\n    users.forEach(function(user) {\n      $.get(apiUrl + 'users/' + user.id + '/replies')\n        .done(function(replies){\n          appendReplies(replies, user)\n        });\n    });\n  };\n\n  // load all users into a select/option input and assign their corresponding ids as values\n  function loadUsers() {    \n    $.getJSON(apiUrl + 'users') \n      .done(function(users) {\n        users.forEach(function(user) {\n          $('#user-select').append('<option value =\"' + user.id + '\">' + user.handle + '</option>')\n          return user;\n        });\n      });\n  };\n\n  // Create new user in the database\n  function createUser(img, handle, realName) {\n    $.post(apiUrl + 'users', {\n      img: img,\n      handle: handle,\n      realName: realName\n    }).fail(function(err){\n      alert(err);\n      console.log('There was a problem creating a new user');\n    });\n  };\n\n  // manually update tweet\n  function updateTweet(id, userId, message) {\n    $.ajax({\n      url: apiUrl + 'tweets/' + id,\n      type: 'PUT',\n      data: {\n        id: id,\n        userId: userId,\n        message: message\n      }\n    });\n  };\n\n  // manually update reply\n  function updateReply(id, userId, tweetId, message) {\n    $.ajax({\n      url: apiUrl + 'reples/' + id,\n      type: 'PUT',\n      data: {\n        id: id,\n        userId: userId,\n        tweetId: tweetId,\n        message: message\n      }\n    });\n  };\n\n});",
-			"settings":
-			{
-				"buffer_size": 14093,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/db.json",
-			"settings":
-			{
-				"buffer_size": 1011,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/gulpfile.js",
 			"settings":
 			{
-				"buffer_size": 1545,
+				"buffer_size": 1544,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "// var sleepy = [\n// {\n// 	asleep: true,\n// 	userId: 8\n// },\n// {\n// 	asleep: false,\n// 	userId: 7\n// },\n// {\n// 	asleep: true,\n// 	userId: 6\n// },\n// {\n// 	asleep: false,\n// 	userId: 5\n// },\n// {\n// 	asleep: true,\n// 	userId: 4\n// },\n// {\n// 	asleep: false,\n// 	userId: 3\n// },\n// {\n// 	asleep: true,\n// 	userId: 2\n// },\n// {\n// 	asleep: true,\n// 	userId: 1 \n// }\n\n// ]\n\n// var people = [\n// {\n// 	name: 'richi',\n// 	id: 1\n// },\n// {\n// 	name: 'levi',\n// 	id: 2\n// },\n// {\n// 	name: 'karla',\n// 	id: 3\n// },\n// {\n// 	name: 'chris p',\n// 	id: 4\n// },\n// {\n// 	name: 'ryan',\n// 	id: 5\n// },\n// {\n// 	name: 'duane',\n// 	id: 6\n// },\n// {\n// 	name: 'kevin',\n// 	id: 7\n// },\n// {\n// 	name: 'brig',\n// 	id: 8\n// }\n// ]\n\n// // people.forEach(function (person, i) {\n// // 	person.asleep = sleepy[i].asleep\n\n\n// // })\n\n// // console.log(people)\n\n// people.forEach(function (person) {\n	\n// 	sleepy.forEach(function (tired) {\n// 		// console.log(person, tired)\n// 		if (person.id === tired.userId) {\n// 			person.asleep = tired.asleep\n// 		}\n// 	})\n// console.log(person)\n// })\n\nvar animals = [\n	{\n		type: 'dog'\n	},\n	{\n		type: 'cat'\n	},\n	{\n		type: 'Charmander'\n	}\n]\n\nvar colors = [\n	{\n		forType: 'dog',\n		color: 'purple'\n	},\n	{\n		forType: 'cat',\n		color: 'rainbow'\n	},\n	{\n		forType: 'Charmander',\n		color: 'awesome'\n	}\n]\n\n\nanimals.forEach(function (animal) {\n	\n	colors.forEach(function (clr) {\n		// console.log(person, color)\n		if (animal.type === clr.forType) {\n			animal.color = clr.color\n		}\n	})\nconsole.log(animal)\n})\n\nanimals.forEach(function (animal) {\n	colors.forEach(function (clr) {\n		if (animal.type === color.forType) {\n			animal.color = color.color\n		}\n	})\n\n})\n\nanimals.forEach(function (animal) {\n	colors.forEach(function (color) {\n		if (animal.type === color.forType) {\n			animal.color = color.color\n		}\n	})\n})\n\nanimals.forEach(function (animal) {\n	colors.forEach(function (color) {\n		if (animal.type === color.forType) {\n			animal.color = color.color\n		}\n	})\n})\n\nanimals.forEach(function (animal) {\n	colors.forEach(function (color) {\n		if (animal.type === color.forType) {\n			animal.color = color.color\n		}\n	})\n})\n\nanimals.forEach(function (animal) {\n	colors.forEach(function (color) {\n		if (animal.type === color.forType) {\n			animal.color = color.color\n		}\n	})\n})\n\nanimals.forEach(function (animal) {\n	colors.forEach(function (color) {\n		if (animal.type === color.forType) {\n			animal.color = color.color\n		}\n	})\n})\n\nanimals.forEach(function (animal) {\n	colors.forEach(function (color) {\n		if (animal.type === color.forType) {\n			animal.color = color.color\n		}\n	})\n})\n\nanimals.forEach(function (animal) {\n	colors.forEach(function (color) {\n		if (animal.type === color.forType) {\n			animal.color = color.color\n		}\n	})\n})\n\nanimals.forEach(function (animal) {\n	colors.forEach(function (color) {\n		if (animal.type === color.forType) {\n			animal.color = color.color\n		}\n	})\n})\n\nanimals.forEach(function (animal) {\n	colors.forEach(function (color) {\n		if (animal.type === color.forType) {\n			animal.color = color.color\n		}\n	})\n})\n\nanimals.forEach(function (animal) {\n	colors.forEach(function (color) {\n		if (animal.type === color.forType) {\n			animal.color = color.color\n		}\n	})\n})\n\nanimals.forEach(function (animal) {\n	colors.forEach(function (color) {\n		if (animal.type === color.forType) {\n			animal.color = color.color\n		}\n	})\n})\n\nreplies.forEach(function (reply) {\n	tweets.forEach(function (tweet) {\n		if (reply.userId === tweet.userId){\n			reply.tweet = tweet.tweet\n		}\n	})\n})",
+			"file": "/Users/richi1717/Sites/Lessons/m4/projects/index.js",
+			"file_size": 3333,
+			"file_write_time": 130816320240000000,
+			"settings":
+			{
+				"buffer_size": 3482,
 				"line_ending": "Unix"
 			}
 		}
@@ -561,6 +580,7 @@
 	],
 	"file_history":
 	[
+		"/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/db.json",
 		"/Users/richi1717/Sites/Lessons/m3/project/twitter/main.js",
 		"/Users/richi1717/Sites/Lessons/m4/javascript/index.js",
 		"/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/js/bundle.js",
@@ -687,8 +707,7 @@
 		"/Users/richi1717/Sites/Lessons/Pseudo Classes and Elements/index.html",
 		"/Users/richi1717/Sites/Lessons/m2/notesForM2/june181.html",
 		"/Users/richi1717/Sites/Lessons/m2/notesForM2/june182.js",
-		"/Users/richi1717/Sites/Lessons/m2/ProjectToDoList/index.php",
-		"/Users/richi1717/Sites/Lessons/jQuery/notes/index.js"
+		"/Users/richi1717/Sites/Lessons/m2/ProjectToDoList/index.php"
 	],
 	"find":
 	{
@@ -842,7 +861,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -872,7 +891,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -881,15 +900,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3358,
+						"buffer_size": 3926,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								840,
-								840
+								1739,
+								1739
 							]
 						],
 						"settings":
@@ -899,14 +918,74 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 641.0,
+						"translation.y": 1311.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
+					"file": "bundle.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 758992,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/db.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1458,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								464,
+								464
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 418.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
 					"file": "/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/templates/tweetTemplate.handlebars",
 					"semi_transient": false,
 					"settings":
@@ -930,111 +1009,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/templates/threadTemplate.handlebars",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 88,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 14093,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11935,
-								11922
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 8442.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/db.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1011,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								654,
-								654
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 668.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
 					"file": "/Users/richi1717/Sites/Lessons/m4/projects/jQuery Twitter v2/gulpfile.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1545,
+						"buffer_size": 1544,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								517,
-								517
+								523,
+								519
 							]
 						],
 						"settings":
@@ -1044,10 +1036,39 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 445.0,
+						"translation.y": 344.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/Users/richi1717/Sites/Lessons/m4/projects/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3482,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3482,
+								3482
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4708.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]

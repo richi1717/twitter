@@ -24,7 +24,7 @@ var bundler = browserify({
 bundler.transform(hbsfy);
 bundler.on('log', gutil.log); // output build logs to terminal
 
-gulp.task('default', [ 'serve', 'build'])
+gulp.task('default', ['serve', 'build'])
 
 gulp.task('build', ['clean'], function () {
   return bundler.bundle()
