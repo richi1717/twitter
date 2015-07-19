@@ -142,13 +142,13 @@ $(function () {
     return html
   }
 
-  function renderTweet(user, message, idTweet) {
+  function renderTweet(user, message, tweetId) {
     var html = tmpl.tweet({
           img: user.img,
           userId: user.id,
           handle: user.handle,
           message: message,
-          id: idTweet
+          id: tweetId
         })
     return html
   }
