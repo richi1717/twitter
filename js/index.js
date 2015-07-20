@@ -9,6 +9,7 @@ var currentUser = {
   id: 4
 };
 
+
 $(function () {
   var usersUrl = 'http://localhost:3000/users/'
   var tweetsUrl = 'http://localhost:3000/tweets/'
@@ -34,9 +35,7 @@ $(function () {
     return $.get(usersUrl + id +'/tweets')
   }
 
-  function renderCompose() {
-    return tmpl.compose() 
-  }
+  var renderCompose = tmpl.compose
 
   var replies = getAllReplies()
   var robots = getUsers()
@@ -66,8 +65,8 @@ $(function () {
 
 
     if(!!replyTweet.length) {
-      var getTweetId = replyTweet.siblings('.tweet').attr('id')
-      var tweetId = getTweetId.slice(6)
+      var twitterId = replyTweet.siblings('.tweet').attr('id')
+      var tweetId = twitterId.split('-')[1]
       postReply(currentUser, tweetId, message)
     } else {
       postTweet(currentUser, message)
@@ -81,23 +80,23 @@ $(function () {
   $('#tweets').on('click', '.tweet', function () {
     $(this).closest('.thread').toggleClass('expand')
     var appendReplies = $(this).parents('#tweets').find('.replies > .tweet')
-    if (!!appendReplies.length) {
-      } else {
-        getAllReplies()
-          .done(function (replies) {
-            replies.forEach(function (reply) {
-              robots.done(function (robots) {
-                robots.forEach(function (robot) {
+    if (!appendReplies.length) {
+      getAllReplies()
+        .done(function (replies) {
+          replies.forEach(function (reply) {
+            robots.done(function (robotsData) {
+              robotsData.forEach(function (robot) {
                 if (reply.userId === robot.id) {
                   var html = renderTweet(robot, reply.message, reply.tweetId)
-                  var search = $('#tweet-' + reply.tweetId)
-                  search.siblings('.replies').append(html)
+                  var search = $('#tweet-' + reply.tweetId).siblings('.replies').append(html)
+                  search
                 }
               })
             })
           })
         })
-      }
+       
+    }
   })
 
   function postTweet(user, message){
@@ -127,8 +126,8 @@ $(function () {
         tweet: renderTweet(user, message),
         compose: tmpl.compose()
       })
-      var search = $('#tweet-' + tweetId)
-      search.siblings('.replies').append(html)
+      var search = $('#tweet-' + tweetId).siblings('.replies').append(html)
+      search
     }).fail(function () {
       console.log('if you\'re seeing this, I have probably jumped off of a building')
     })
@@ -137,7 +136,7 @@ $(function () {
   function renderThread(user, message, id) {
     var html = tmpl.thread({
         tweet: renderTweet(user, message, id),
-        compose: renderCompose()
+        compose: renderCompose
     })
     return html
   }
