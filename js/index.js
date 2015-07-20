@@ -100,8 +100,14 @@ $(function () {
     }
   })
 
+  $('#main').on('keyup', 'textarea', function () {
+    var counter = $(this).parent().find('.count')
+    var value = $(this).val().length
+    counter.text(140 - value)
+  })
+
   function postTweet(user, message){
-    $.post(tweetsUrl,{
+    $.post(tweetsUrl, {
       userId: user.id,
       message: message
     }).done(function (post) {
