@@ -5,47 +5,150 @@ var tmpl = require('./template.js')
 
 var currentUser = {
   handle: '@darthkitty',
-  img: 'darthkitty.jpg',
-  id: 1
+  img: '/images/darthkitty.jpg',
+  id: 4
 };
 
+
 $(function () {
+  var usersUrl = 'http://localhost:3000/users/'
+  var tweetsUrl = 'http://localhost:3000/tweets/'
+  var repliesUrl = 'http://localhost:3000/replies/'
 
-	$('#main').on('click', 'textarea', function () {
-		$(this).parent().addClass('expand')
-	})
+  function getUsers() {
+    return $.get(usersUrl)
+  }
 
-	$('#main').on('click', 'button', function (event) {
-		event.preventDefault()
+  function getReplies(id) {
+    return $.get(tweetsUrl + id + '/replies')
+  }
 
-		var location = $(this).parents('.compose')
-		var message = location.find('textarea').val()
-		var replyTweet = $(this).parents('.replies')  
-		var output = renderThread(user, message)
+  function getAllReplies() {
+    return $.get(repliesUrl)
+  }
 
-		location.removeClass('expand')
+  function getTweets() {
+    return $.get(tweetsUrl) 
+  }
 
-		if (!!replyTweet.length) {
-			output = renderTweet(user, message)
-			replyTweet.append(output)
-		} else {
-			$('.tweets').append(output)
-		}
-		location.find('textarea').val('')
-		location.find('.count').text(140)
-	})
+  function tweetsByUser(id) {
+    return $.get(usersUrl + id +'/tweets')
+  }
 
-	$('.tweets').on('click', '.tweet', function () {
-		$(this).parent().toggleClass('expand')
-		console.log(this)
-	})
+  var renderCompose = tmpl.compose
 
-	$('main').on('keyup', 'textarea', function () {
-		var counter = $(this).parent().find('.count')
-		var value = $(this).val().length
-		counter.text(140 - value)
-	})
+  var replies = getAllReplies()
+  var robots = getUsers()
+  var tweeting = getTweets()
 
-	$.post('localhost:3000/users')
+  robots.done(function (robots) {
+    robots.forEach(function (robot) {
+      tweetsByUser(robot.id)
+        .done(function (tweets) {
+          tweets.forEach(function (tweet) {
+            $('#tweets').append(renderThread(robot, tweet.message, tweet.id))
+        })
+      })
+    })
+  })
 
+
+  $('#main').on('click', 'textarea', function () {
+    $(this).parent().addClass('expand')
+  })
+
+  $('#main').on('submit', '.compose', function (event) {
+    event.preventDefault()
+
+    var message = $(this).find('textarea').val()
+    var replyTweet = $(this).closest('.replies')
+
+
+    if(!!replyTweet.length) {
+      var twitterId = replyTweet.siblings('.tweet').attr('id')
+      var tweetId = twitterId.split('-')[1]
+      postReply(currentUser, tweetId, message)
+    } else {
+      postTweet(currentUser, message)
+    }
+
+    $(this).removeClass('expand')
+    $(this).find('textarea').val('')
+    $(this).find('count').text(140)
+  }) 
+
+  $('#tweets').on('click', '.tweet', function () {
+    $(this).closest('.thread').toggleClass('expand')
+    var appendReplies = $(this).parents('#tweets').find('.replies > .tweet')
+    if (!appendReplies.length) {
+      getAllReplies()
+        .done(function (replies) {
+          replies.forEach(function (reply) {
+            robots.done(function (robotsData) {
+              robotsData.forEach(function (robot) {
+                if (reply.userId === robot.id) {
+                  var html = renderTweet(robot, reply.message, reply.tweetId)
+                  var search = $('#tweet-' + reply.tweetId).siblings('.replies').append(html)
+                  search
+                }
+              })
+            })
+          })
+        })
+       
+    }
+  })
+
+  function postTweet(user, message){
+    $.post(tweetsUrl,{
+      userId: user.id,
+      message: message
+    }).done(function (post) {
+      console.log('Obviously you do not suck at life!')
+      var html = tmpl.thread({
+        tweet: renderTweet(user, message),
+        compose: tmpl.compose()
+      })
+      $('#tweets').append(renderThread(currentUser, message))
+    }).fail(function () {
+      console.log('Obviously you suck at life')
+    })
+  } 
+
+  function postReply(user, tweetId, message){
+    $.post(repliesUrl, {
+      userId: user.id,
+      tweetId: tweetId,
+      message: message
+    }).done(function (post) {
+      console.log('fantastico!!!!')
+      var html = tmpl.thread({
+        tweet: renderTweet(user, message),
+        compose: tmpl.compose()
+      })
+      var search = $('#tweet-' + tweetId).siblings('.replies').append(html)
+      search
+    }).fail(function () {
+      console.log('if you\'re seeing this, I have probably jumped off of a building')
+    })
+  }
+
+  function renderThread(user, message, id) {
+    var html = tmpl.thread({
+        tweet: renderTweet(user, message, id),
+        compose: renderCompose
+    })
+    return html
+  }
+
+  function renderTweet(user, message, tweetId) {
+    var html = tmpl.tweet({
+          img: user.img,
+          userId: user.id,
+          handle: user.handle,
+          message: message,
+          id: tweetId
+        })
+    return html
+  }
 });
