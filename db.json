@@ -1,0 +1,80 @@
+{
+  "tweets": [
+    {
+      "id": 1,
+      "userId": 3,
+      "message": "tweet tweet!!"
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "message": "Hey, who wants to teach?"
+    },
+    {
+      "id": 5,
+      "userId": 2,
+      "message": "Yo!"
+    },
+    {
+      "userId": 1,
+      "message": "Richi, Chris V, Chris P, Karla, and Levi are my favorite students",
+      "id": 7
+    },
+    {
+      "userId": 4,
+      "message": "test 1",
+      "id": 8
+    },
+    {
+      "userId": 4,
+      "message": "fasd",
+      "id": 9
+    }
+  ],
+  "replies": [
+    {
+      "id": 1,
+      "userId": 1,
+      "tweetId": 2,
+      "message": "@rockit_bootcamp I do!"
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "tweetId": 2,
+      "message": "@bradwestfall Sweet!"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "tweetId": 5,
+      "message": "@therealklanni What up!"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "img": "images/brad.png",
+      "handle": "@bradwestfall",
+      "realName": "Brad Westfall"
+    },
+    {
+      "id": 2,
+      "img": "images/kevin.png",
+      "handle": "@therealklanni",
+      "realName": "Kevin Lanni"
+    },
+    {
+      "id": 3,
+      "img": "images/rockit.png",
+      "handle": "@rockit_bootcamp",
+      "realName": "RockIt Bootcamp"
+    },
+    {
+      "id": 4,
+      "img": "images/darthkitty.jpg",
+      "handle": "@darthkitty",
+      "realName": "Darth to the Kitty"
+    }
+  ]
+}

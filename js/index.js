@@ -62,11 +62,13 @@ $(function () {
 
     var message = $(this).find('textarea').val()
     var replyTweet = $(this).closest('.replies')
+    var twitterId = replyTweet.siblings('.tweet').attr('id')
+    if (twitterId) {
+      var tweetId = twitterId.split('-')[1]
+    }
 
 
     if(!!replyTweet.length) {
-      var twitterId = replyTweet.siblings('.tweet').attr('id')
-      var tweetId = twitterId.split('-')[1]
       postReply(currentUser, tweetId, message)
     } else {
       postTweet(currentUser, message)
@@ -95,7 +97,6 @@ $(function () {
             })
           })
         })
-       
     }
   })
 
@@ -105,11 +106,7 @@ $(function () {
       message: message
     }).done(function (post) {
       console.log('Obviously you do not suck at life!')
-      var html = tmpl.thread({
-        tweet: renderTweet(user, message),
-        compose: tmpl.compose()
-      })
-      $('#tweets').append(renderThread(currentUser, message))
+      $('#tweets').append(renderThread(currentUser, message, post.id))
     }).fail(function () {
       console.log('Obviously you suck at life')
     })
@@ -124,7 +121,6 @@ $(function () {
       console.log('fantastico!!!!')
       var html = tmpl.thread({
         tweet: renderTweet(user, message),
-        compose: tmpl.compose()
       })
       var search = $('#tweet-' + tweetId).siblings('.replies').append(html)
       search
