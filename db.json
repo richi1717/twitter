@@ -19,6 +19,16 @@
       "userId": 1,
       "message": "Richi, Chris V, Chris P, Karla, and Levi are my favorite students",
       "id": 7
+    },
+    {
+      "userId": 4,
+      "message": "kevin",
+      "id": 8
+    },
+    {
+      "userId": 4,
+      "message": "bottom",
+      "id": 9
     }
   ],
   "replies": [
@@ -39,6 +49,54 @@
       "userId": 1,
       "tweetId": 5,
       "message": "@therealklanni What up!"
+    },
+    {
+      "userId": 4,
+      "tweetId": 8,
+      "message": "what",
+      "id": 4
+    },
+    {
+      "userId": 4,
+      "tweetId": 2,
+      "message": "working",
+      "id": 5
+    },
+    {
+      "userId": 4,
+      "tweetId": 8,
+      "message": "this",
+      "id": 6
+    },
+    {
+      "userId": 4,
+      "tweetId": 9,
+      "message": "bottom > bottom",
+      "id": 7
+    },
+    {
+      "userId": 4,
+      "tweetId": 2,
+      "message": "bottom of this",
+      "id": 8
+    },
+    {
+      "userId": 4,
+      "tweetId": 9,
+      "message": "this bottom of bottom",
+      "id": 9
+    },
+    {
+      "userId": 4,
+      "tweetId": 7,
+      "message": "hey",
+      "id": 10
+    },
+    {
+      "userId": 4,
+      "tweetId": 5,
+      "message": "this is working fine",
+      "id": 11
     }
   ],
   "users": [

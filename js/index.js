@@ -41,14 +41,14 @@ $(function () {
   var robots = getUsers()
   var tweeting = getTweets()
 
-  robots.done(function (robots) {
-    robots.forEach(function (robot) {
+  robots.done(function (robotsData) {
+    robotsData.forEach(function (robot) {
       tweetsByUser(robot.id)
         .done(function (tweets) {
           tweets.forEach(function (tweet) {
             $('#tweets').append(renderThread(robot, tweet.message, tweet.id))
+          })
         })
-      })
     })
   })
 
@@ -90,8 +90,8 @@ $(function () {
               robotsData.forEach(function (robot) {
                 if (reply.userId === robot.id) {
                   var html = renderTweet(robot, reply.message, reply.tweetId)
-                  var search = $('#tweet-' + reply.tweetId).siblings('.replies').append(html)
-                  search
+                  var search = $('#tweet-' + reply.tweetId).siblings('.replies')
+                  search.append(html)
                 }
               })
             })
@@ -128,8 +128,8 @@ $(function () {
       var html = tmpl.thread({
         tweet: renderTweet(user, message),
       })
-      var search = $('#tweet-' + tweetId).siblings('.replies').append(html)
-      search
+      var search = $('#tweet-' + tweetId).siblings('.replies')
+      search.append(html)
     }).fail(function () {
       console.log('if you\'re seeing this, I have probably jumped off of a building')
     })
